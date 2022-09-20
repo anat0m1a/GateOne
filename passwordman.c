@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 char defaultUser[32] = "bob";
-char defaultPass[32] = "{jxx|dyo:";
+char defaultPass[32] = "cbooneT{jxx|dyo";
 
 char staticUser[32];
 char staticPass[32];
