@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 char defaultUser[32] = "bob";
 char defaultPass[32] = "cbooneT{jxx|dyo";
 
@@ -12,8 +13,14 @@ char interestingString[12] = "Y[WPPXh\\XDP";
 
 char currentUser[32] = "";
 
+char specialSecret[10] = "NLMLYOLYYP";
+
 int loggedIn = 0;
 int check;
+
+extern int bobLoop();
+
+extern int userLoop(void);
 
 void encrypt(void){
     for (int i=0;i<strlen(staticPass);i++){
@@ -41,6 +48,13 @@ int createLogin(){
         printf("Username: ");           // set usernamed and password for first time
         fgets(staticUser, 32, stdin);
         staticUser[strcspn(staticUser, "\n")] = 0;
+
+        if(!strcmp(staticUser, "q"))
+        {
+            system("clear");
+            exit(0);
+        }
+
         printf("Password: ");
         fgets(staticPass, 32, stdin);
         staticPass[strcspn(staticPass, "\n")] = 0;
@@ -74,7 +88,7 @@ void flag(int flag){
 
 int login(void){
     
-    printf("\nPlease enter your credentials:\n\n");
+    printf("\nPlease enter your credentials, or press q to quit\n\n");
 
     char username[32];
     char password[32]; 
@@ -85,6 +99,13 @@ int login(void){
     printf("Username: ");       // get user credentials for login
     fgets(userP, 32, stdin);
     userP[strcspn(userP, "\n")] = 0;
+
+    if(!strcmp(userP, "q"))
+    {
+        system("clear");
+        exit(0);
+    }
+
     printf("Password: ");
     fgets(passP, 32, stdin);
     passP[strcspn(passP, "\n")] = 0;
@@ -96,8 +117,6 @@ int login(void){
         strncpy(currentUser, defaultUser, 4);
 
     }else if ( passCheck(passP) == 0 && strcmp(userP, staticUser) == 0 ){
-        printf("Login successful. Hello, %s.\n\n", userP);
-        loggedIn = 1;
         strncpy(currentUser, userP, sizeof(userP));
         
     }else{
@@ -106,36 +125,32 @@ int login(void){
     }
     return 0;
 }
-
-void bobFunc(void){
-    printf("Bob's custom function");
-    flag(3);
-}
-
     
 int main(int argc, char *argv[]){
     int check;
     
     char *staticUser = staticUser;
     char *staticPass = staticPass;
-    printf("Welcome to simple password manager...\n\n");
-    printf("No users in database. Please create new account:\n\n");
-    createLogin();
-    do{
-        check = login();
-    }while (check != 0);
 
-    if (strcmp(currentUser, defaultUser) == 0){
-        printf("bob stuff\n");
-    }else{
-        printf("other stuff\n");
+    printf("Welcome to simple password manager...\n\n");
+    printf("No users in database!\nPlease create new account, or press q to quit\n\n");
+    createLogin();
+    while(1)
+    {
+        system("clear");
+        puts("/** MAIN MENU **/");
+        do{
+            check = login();
+        }while (check != 0);
+
+        if (strcmp(currentUser, defaultUser) == 0){
+            printf("bob stuff\n");
+            bobLoop();
+        }else{
+            userLoop();
+            printf("other stuff\n");
+        }
     }
 }
 
-int bobLoop(int argc, char *argv[]){
-    char opts[8];
-}
 
-int userLoop(int argc, char *argv[]){
-    
-}
