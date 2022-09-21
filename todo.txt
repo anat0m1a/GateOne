@@ -2,15 +2,15 @@ flag to implement:
 
 1. hidden function that prints flag - todo
 
-2. .data section ✓
+2. BSS section ✓
 
-3. XORd data ✓
+3. XORd data (two strings XORd from bss gives flag) ✓
 
-4. multiple logins, 1 gives the flag ✓
+4. multiple logins, 1 gives the flag upon login ✓
 
-5. 
+5. ?
 
-6. 
+6. ?
 
 
 
