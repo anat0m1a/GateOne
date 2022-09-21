@@ -7,6 +7,9 @@ char defaultPass[32] = "cbooneT{jxx|dyo";
 char staticUser[32];
 char staticPass[32];
 
+char usefulNum[12] = "12345678901";
+char interestingString[12] = "Y[WPPXh\\XDP";
+
 char currentUser[32] = "";
 
 int loggedIn = 0;
