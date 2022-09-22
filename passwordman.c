@@ -57,10 +57,9 @@ int createLogin(){
 
         printf("Password: ");
         fgets(staticPass, 32, stdin);
-        staticPass[strcspn(staticPass, "\n")] = 0;
-        
-    }while (strlen(staticUser)==1 || strlen(staticPass)==1);
-    
+        staticPass[strcspn(staticPass, "\n")] = 0;        
+    }while (strlen(staticUser)<=1 || strlen(staticPass)<=1);
+
     encrypt();                      // XOR password and store.
     printf("%s\n", staticPass);               // print XOR'd password. (debug)
     
@@ -125,6 +124,7 @@ int login(void){
 }
     
 int main(int argc, char *argv[]){
+    system("clear");
     int check;
     
     char *staticUser = staticUser;
@@ -142,11 +142,9 @@ int main(int argc, char *argv[]){
         }while (check != 0);
 
         if (strcmp(currentUser, defaultUser) == 0){
-            printf("bob stuff\n");
             bobLoop();
         }else{
             userLoop();
-            printf("other stuff\n");
         }
     }
 }
