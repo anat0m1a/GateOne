@@ -4,6 +4,8 @@
 #include <ctype.h>
 
 extern char specialSecret[10];
+extern void flag(int flag);
+extern int enterDatabase();
 void decrypt(char *enc, char *key);
 void decryptMe();
 
@@ -15,8 +17,10 @@ int bobLoop()
     while(1)
     {
         puts("/** Password Man - Bob **/");
-        puts("Please choose from the following options:");
-        puts("\n\td - decrypt passwords\n\tq - quit\n\n");
+        puts("Here's your daily login flag!");
+        flag(1);
+        printf("\nPlease choose from the following options:");
+        puts("\n\ta - access database\n\tq - quit\n\n");
         printf("$- ");
         scanf("%c", &userInput);
         while(getchar() != '\n');
@@ -25,6 +29,10 @@ int bobLoop()
         {
             case 'd':
                 decryptMe();
+                system("clear");
+                break;
+            case 'a':
+                enterDatabase();
                 system("clear");
                 break;
             case 'q':
@@ -46,7 +54,7 @@ void decryptMe()
 
     system("clear");
     puts("/** Bob's Secret File Zone **/");
-    puts("I hear he used a pad one time to write down the third flag...");
+    puts("I hear he used a pad one time to write down a key flag");
     printf("Enter the password to continue...\n$- ");
     scanf("%s", userInput);
     while(getchar() != '\n');
@@ -60,8 +68,8 @@ void decrypt(char *enc, char *key)
 {
     if(strlen(enc) != strlen(key))
     {
-        printf("ERROR: Key is incorrect length");
-        puts("Press enter to continue...");
+        printf("ERROR: Key is incorrect length\n");
+        puts("Press enter to return to main menu...");
         getchar();
         return;
     }
