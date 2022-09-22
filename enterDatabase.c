@@ -20,6 +20,7 @@ struct mainLog *new;
 void loadLog();
 void showLog();
 struct mainLog *ini();
+char *decryptXOR(char *string);
 
 void enterDatabase()
 {
@@ -99,8 +100,8 @@ void showLog()                  //Prints out nodes in succession
         system("clear");
         puts("Bob's Secure Password Database");
         printf("Record %d/%d\n", count, menu);
-        printf("Username: %s\n", current->username);
-        printf("Password: %s\n", current->password);
+        printf("Username: %s\n", decryptXOR(current->username));
+        printf("Password: %s\n", decryptXOR(current->password));
         printf("Expires in (days): %d\n", current->expire);
 
         puts("Show next record?");  //User option
@@ -127,4 +128,11 @@ void showLog()                  //Prints out nodes in succession
 
     system("clear");    //Close function
     return;
+}
+
+char *decryptXOR(char *string)
+{
+    for(int i = 0; i < strlen(string); i++)
+        string[i] = string[i] ^ 0xCC;
+    return(string);
 }
