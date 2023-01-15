@@ -20,4 +20,12 @@ If not and you're running ubuntu, run the following command:
 To compile the binary run the following command:
 `gcc passwordman.c enterDatabase.c bobLoop.c userLoop.c -o passwordMan`
 
+## How will I know when I've found a flag?
+
+You can consider a flag as ***anything*** that has wrapped in a pair of curly parentheses, like this: `{I_am_a_flag}`. You might not even need to do any decoding to find some of them! There are 5 flags in total of varying difficulty.
+
+Don't forget you can run the binary! I just don't recommend reading the source if you want this to be somewhat challenging.
+
+
+
 
